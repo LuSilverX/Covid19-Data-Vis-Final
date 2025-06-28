@@ -20,9 +20,9 @@ How It Works
 
 The project is split into two main user experiences:
 
-1. Historical Dashboard (`/` or `/early-data/`)**: This section is powered by data imported from local CSV files (`Data/us.csv`, etc.). It uses a suite of AJAX APIs to provide paginated table data and filterable chart data, offering a rich user experience for exploring historical trends.
+1. Historical Dashboard (`/` or `/early-data/`): This section is powered by data imported from local CSV files (`Data/us.csv`, etc.). It uses a suite of AJAX APIs to provide paginated table data and filterable chart data, offering a rich user experience for exploring historical trends.
 
-2. Live Dashboard (`/live-data/`)**: This section provides up-to-the-minute data. When a user requests data for a specific state for the first time or clicks the "Refresh" button, a Celery task is dispatched. This task launches a headless Selenium browser, navigates the CDC website, downloads the data, parses it, and saves it to the database. The user's browser polls the backend until the task is complete and then displays the new data. A similar, simpler process exists for the WHO data, which is fetched from a direct CSV link.
+2. Live Dashboard (`/live-data/`): This section provides up-to-the-minute data. When a user requests data for a specific state for the first time or clicks the "Refresh" button, a Celery task is dispatched. This task launches a headless Selenium browser, navigates the CDC website, downloads the data, parses it, and saves it to the database. The user's browser polls the backend until the task is complete and then displays the new data. A similar, simpler process exists for the WHO data, which is fetched from a direct CSV link.
 
 Technical Stack
 
@@ -50,8 +50,8 @@ Setup and Installation
 
 2. Clone the Repository
 
-git clone <your-repository-url>
-cd <repository-name>
+git clone git@github.com:LuSilverX/Covid19-Data-Vis-Final.git
+cd Covid19-Data-Vis-Final
 
 3. Set Up Environment
    
