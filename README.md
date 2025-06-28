@@ -7,50 +7,54 @@
 
 A sophisticated Django web application that provides a dual-purpose dashboard for tracking and visualizing COVID-19 data. It features a historical data explorer for early pandemic trends and a live data tracker that performs on-demand web scraping to fetch the latest information from official sources.
 
-Key Features
+## Key Features
 
-- Historical Data Explorer: Visualize early pandemic data with interactive, paginated tables and filterable line charts for US National, State, and County levels.
-- Live Data Tracker: Get the most recent data available from the CDC and WHO.
-- On-Demand Web Scraping: Users can initiate a background task to scrape the very latest data from the CDC website, which no longer provides a public data API.
-- Asynchronous Task Handling: Utilizes Celery and Redis to manage long-running scraping tasks in the background without blocking the user interface.
-- Dynamic Frontend: The frontend polls the server for task completion and dynamically updates data tables without requiring a page reload.
-- Scheduled Updates: Automatically fetches data from the CDC and WHO on a weekly schedule using Celery Beat.
+- **Historical Data Explorer**: Visualize early pandemic data with interactive, paginated tables and filterable line charts for US National, State, and County levels.
+- **Live Data Tracker**: Get the most recent data available from the CDC and WHO.
+- **On-Demand Web Scraping**: Users can initiate a background task to scrape the very latest data from the CDC website, which no longer provides a public data API.
+- **Asynchronous Task Handling**: Utilizes Celery and Redis to manage long-running scraping tasks in the background without blocking the user interface.
+- **Dynamic Frontend**: The frontend polls the server for task completion and dynamically updates data tables without requiring a page reload.
+- **Scheduled Updates**: Automatically fetches data from the CDC and WHO on a weekly schedule using Celery Beat.
 
-How It Works
+## How It Works
 
 The project is split into two main user experiences:
 
-1. Historical Dashboard (`/` or `/early-data/`): This section is powered by data imported from local CSV files (`Data/us.csv`, etc.). It uses a suite of AJAX APIs to provide paginated table data and filterable chart data, offering a rich user experience for exploring historical trends.
+1.  **Historical Dashboard (`/` or `/early-data/`)**: This section is powered by data imported from local CSV files (`Data/us.csv`, etc.). It uses a suite of AJAX APIs to provide paginated table data and filterable chart data, offering a rich user experience for exploring historical trends.
 
-2. Live Dashboard (`/live-data/`): This section provides up-to-the-minute data. When a user requests data for a specific state for the first time or clicks the "Refresh" button, a Celery task is dispatched. This task launches a headless Selenium browser, navigates the CDC website, downloads the data, parses it, and saves it to the database. The user's browser polls the backend until the task is complete and then displays the new data. A similar, simpler process exists for the WHO data, which is fetched from a direct CSV link.
+2.  **Live Dashboard (`/live-data/`)**: This section provides up-to-the-minute data. When a user requests data for a specific state for the first time or clicks the "Refresh" button, a Celery task is dispatched. This task launches a headless Selenium browser, navigates the CDC website, downloads the data, parses it, and saves it to the database. The user's browser polls the backend until the task is complete and then displays the new data. A similar, simpler process exists for the WHO data, which is fetched from a direct CSV link.
 
-Technical Stack
+## Technical Stack
 
-- Backend: Django, Django REST Framework, Celery
-- Browser Automation: Selenium
-- Data Fetching: Requests
-- Database: MySQL
-- Frontend: Django Templates, JavaScript, jQuery, Chart.js
-- Asynchronous Task Queue: Redis, Celery
+- **Backend**: Django, Celery
+- **Browser Automation**: Selenium
+- **Data Fetching**: Requests
+- **Database**: MySQL
+- **Frontend**: Django Templates, JavaScript, jQuery, Chart.js
+- **Asynchronous Task Queue**: Redis
 
-Project Structure
+## Project Structure
 
 - `covid19_project/`: Main Django project configuration, settings, and root URL routing.
 - `data_handler/`: The core Django app containing all models, views, tasks, and templates for the dashboard.
 - `Data/`: Contains the initial CSV files needed to populate the historical database tables.
 - `static/`: Contains the project's static assets (CSS, JavaScript).
 
-Setup and Installation
+## Setup and Installation
 
-1. Prerequisites
+### 1. Prerequisites
 
 - Python 3.9+
 - MySQL Server
 - Redis Server
 
-2. Clone the Repository
+### 2. Clone the Repository
 
-git clone git@github.com:LuSilverX/Covid19-Data-Vis-Final.git
+```bash
+# Clone the repository using the HTTPS method
+git clone [https://github.com/LuSilverX/Covid19-Data-Vis-Final.git](https://github.com/LuSilverX/Covid19-Data-Vis-Final.git)
+
+# After the clone is complete, navigate into the newly created directory
 cd Covid19-Data-Vis-Final
 
 3. Set Up Environment
